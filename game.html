@@ -54,6 +54,23 @@
     <header>
         <h1>TapGalaxy</h1>
     </header>
+    <div id="user-info"></div>
+
+    <script>
+        // Retrieve URL parameters from the query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        const username = urlParams.get('username');
+        const firstName = urlParams.get('first_name');
+
+        // Display user information on the page
+        const userInfoDiv = document.getElementById('user-info');
+        userInfoDiv.innerHTML = `
+            <p>User ID: ${userId}</p>
+            <p>Username: ${username}</p>
+            <p>First Name: ${firstName}</p>
+        `;
+    </script>
     <main id="game-area">
         <div id="coin-counter">Coins: <span id="personal_coins_counter">000000000</span></div>
         <img id="click-image" src="assets/images/logo.png" alt="Tap to Earn!" onclick="showMessage()" />
