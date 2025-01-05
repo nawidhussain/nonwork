@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TapGalaxy - Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+    <style>
+    #game-area img {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    #click-image:active {
+        transform: scale(0.95); /* Shrinks slightly when clicked */
+        transition: transform 0.1s;
+    }
+    #click-image {
+        cursor: pointer;
+        user-select: none; /* Disable text/image selection */
+        outline: none; /* Remove focus outline */
+        -webkit-user-drag: none; /* Prevent dragging on WebKit browsers */
+        -webkit-tap-highlight-color: transparent; /* Remove blue overlay for mobile/touch devices */
+        border: none; /* Ensure no border on focus */
+    }
+
+    </style>
+</head>
+<body>
+    <div id="warning">
+        <p>This website is optimized for mobile devices. Please use a mobile or tablet to access this site.</p>
+      </div>
+    <header>
+        <h1>TapGalaxy</h1>
+    </header>
+    <main id="game-area">
+        <div id="coin-counter">Coins: 0</div>
+        <img id="click-image" src="assets/images/logo.png" alt="Tap to Earn!" />
+    </main>
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <img src="assets/gif1/money.gif" alt="Earn" />
+            <span>Earn</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="assets/gif/task.gif" alt="Tasks" />
+            <span>Tasks</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="assets/gif1/building.gif" alt="Town" />
+            <span>Town</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="assets/gif1/dollar.gif" alt="Swap" />
+            <span>Swap</span>
+        </a>
+        <a href="#" class="nav-item">
+            <img src="assets/gif1/profile.gif" alt="Account" />
+            <span>Account</span>
+        </a>
+    </nav>
+
+
+    <script>
+        document.getElementById('click-image').addEventListener('mousedown', function (event) {
+    event.preventDefault(); // Prevent default behavior (e.g., selection, focus highlight)
+});
+
+    </script>
+
+    <script>
+    // Check if the device is mobile or tablet
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Redirect if not on mobile
+    if (!isMobileDevice()) {
+      window.location.href = "pc.html";
+    }
+    </script>
+</body>
+</html>
+    

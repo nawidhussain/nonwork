@@ -1,0 +1,68 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0d1117;
+    color: #fff;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    background: #161b22;
+    position: relative;
+    z-index: 1;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px); /* Adjust height to account for nav */
+    text-align: center;
+}
+#coin-counter {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+#click-image {
+    cursor: pointer;
+    width: 90%; /* Make the image occupy 90% of the available width */
+    max-width: 400px; /* Set a maximum width for larger screens */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: contain; /* Ensure the image fits within its bounds */
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #161b22;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #252a34;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+}
+.nav-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+}
+@media (min-width: 768px) {
+    main {
+        height: calc(100vh - 80px); /* Adjust for tablets */
+    }
+    .bottom-nav {
+        height: 80px;
+    }
+}
