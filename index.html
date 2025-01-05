@@ -36,6 +36,19 @@
     });
 </script>
 
+        <script>
+        // Get user data from the URL (from Telegram bot)
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        const username = urlParams.get('username');
+        const firstName = urlParams.get('first_name');
+
+        function goToGame() {
+            // Pass the user data to game.html via URL parameters
+            window.location.href = `game.html?user_id=${userId}&username=${username}&first_name=${firstName}`;
+        }
+    </script>
+
 </body>
 </html>
     
