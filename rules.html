@@ -22,17 +22,21 @@
             <li>Reach milestones to unlock new features.</li>
         </ul>
     </main>
-    <script>
-        // Check if the device is mobile or tablet
-        function isMobileDevice() {
-          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+<script>
+    // Check if the device is mobile or tablet
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Hide the warning if on mobile or tablet
+    document.addEventListener('DOMContentLoaded', function () {
+        const warningElement = document.getElementById('warning');
+        if (isMobileDevice()) {
+            warningElement.style.display = 'none'; // Hide the warning
         }
-    
-        // Redirect if not on mobile
-        if (!isMobileDevice()) {
-          window.location.href = "pc.html";
-        }
-        </script>
+    });
+</script>
+
 </body>
 </html>
     
