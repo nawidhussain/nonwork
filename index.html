@@ -1,18 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://nawidhussain.github.io/nonwork/game.html">
     <title>Redirecting...</title>
     <link rel="stylesheet" href="style.css">
     <script src="utils.js" defer></script>
 </head>
 <body>
-    <div id="warning">
-        <p>This website is optimized for mobile devices. Please use a mobile or tablet to access this site.</p>
-      </div>
     <header>
         <h1>TapGalaxy</h1>
     </header>
@@ -21,34 +16,21 @@
         <a href="rules.html" class="btn">📖 Game Rules</a>
         <a href="about.html" class="btn">ℹ️ About</a>
     </main>
-<script>
-    // Check if the device is mobile or tablet
-    function isMobileDevice() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
 
-    // Hide the warning if on mobile or tablet
-    document.addEventListener('DOMContentLoaded', function () {
-        const warningElement = document.getElementById('warning');
-        if (isMobileDevice()) {
-            warningElement.style.display = 'none'; // Hide the warning
-        }
-    });
-</script>
-
-        <script>
+    <script>
         // Get user data from the URL (from Telegram bot)
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('user_id');
         const username = urlParams.get('username');
         const firstName = urlParams.get('first_name');
 
-        function goToGame() {
-            // Pass the user data to game.html via URL parameters
-            window.location.href = `game.html?user_id=${userId}&username=${username}&first_name=${firstName}`;
-        }
-    </script>
+        // Construct the URL for game.html with user data
+        const gameUrl = `game.html?user_id=${userId}&username=${username}&first_name=${firstName}`;
 
+        // Redirect to the game page after 1 second to allow user info extraction
+        setTimeout(() => {
+            window.location.href = gameUrl;
+        }, 1000); // You can adjust the delay time if necessary
+    </script>
 </body>
 </html>
-    
