@@ -75,7 +75,7 @@ body {
 <body>
     <div id="warning">
         <p>This website is optimized for mobile devices. Please use a mobile or tablet to access this site.</p>
-      </div>
+    </div>
     <header>
         <h1>TapGalaxy</h1>
     </header>
@@ -127,50 +127,54 @@ body {
     <div id="message-box">
         This feature is coming soon!
     </div>
-<script>
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
-        authDomain: "tgbot-aece7.firebaseapp.com",
-        projectId: "tgbot-aece7",
-        storageBucket: "tgbot-aece7.appspot.com",
-        messagingSenderId: "560643215361",
-        appId: "1:560643215361:web:9f347550ec6ac03acf3000",
-        measurementId: "G-4JFPEM6L3B"
-    };
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore(app);
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
+            authDomain: "tgbot-aece7.firebaseapp.com",
+            projectId: "tgbot-aece7",
+            storageBucket: "tgbot-aece7.appspot.com",
+            messagingSenderId: "560643215361",
+            appId: "1:560643215361:web:9f347550ec6ac03acf3000",
+            measurementId: "G-4JFPEM6L3B"
+        };
 
-    // Save user data to Firebase
-    async function saveUserData() {
-        if (userId) {
-            try {
-                await db.collection("users").doc(userId).set({
-                    username: username || "Unknown",
-                    first_name: firstName || "Unknown",
-                    last_login: new Date().toISOString()
-                });
-                console.log("User data saved successfully to Firestore!");
-            } catch (error) {
-                console.error("Error saving user data:", error);
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
+
+        // Save user data to Firebase
+        async function saveUserData() {
+            if (userId) {
+                try {
+                    await db.collection("users").doc(userId).set({
+                        username: username || "Unknown",
+                        first_name: firstName || "Unknown",
+                        last_login: new Date().toISOString()
+                    });
+                    console.log("User data saved successfully to Firestore!");
+                } catch (error) {
+                    console.error("Error saving user data:", error);
+                }
+            } else {
+                console.warn("User ID is missing; data will not be saved.");
             }
-        } else {
-            console.warn("User ID is missing; data will not be saved.");
         }
-    }
 
-    // Call saveUserData on page load
-    saveUserData();
-</script>
+        // Call saveUserData on page load
+        saveUserData();
+    </script>
 
     <script>
         function showMessage() {
             // Show the custom message box
             document.getElementById('message-box').classList.add('show');
 
-            // Hide the message after 3 seconds (you can adjust this time)
+            // Hide the message after 7 seconds
             setTimeout(function() {
                 document.getElementById('message-box').classList.remove('show');
             }, 7000);
@@ -182,6 +186,7 @@ body {
             event.preventDefault(); // Prevent default behavior (e.g., selection, focus highlight)
         });
     </script>
+
     <script>
         // Check if the device is mobile or tablet
         function isMobileDevice() {
@@ -196,6 +201,5 @@ body {
             }
         });
     </script>
-
 </body>
 </html>
