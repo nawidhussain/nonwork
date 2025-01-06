@@ -28,4 +28,4 @@ const gameUrl = `game.html?user_id=${userId}&username=${username}&first_name=${f
 // Redirect to the game page after 1 second
 setTimeout(() => {
     window.location.href = gameUrl;
-}, 100);
+}, 10000);
