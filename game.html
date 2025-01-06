@@ -96,10 +96,12 @@ body {
             <p>First Name: ${firstName}</p>
         `;
     </script>
-    <main id="game-area">
-        <div id="coin-counter">Coins: <span id="personal_coins_counter">000000000</span></div>
-        <img id="click-image" src="assets/images/logo.png" alt="Tap to Earn!" onclick="showMessage()" />
-    </main>
+<main id="game-area">
+    <div id="coin-counter">Coins: <span id="personal_coins_counter">000000000</span></div>
+    <div id="error-message" style="color: red; font-size: 14px; margin-top: 10px;"></div>
+    <img id="click-image" src="assets/images/logo.png" alt="Tap to Earn!" onclick="showMessage()" />
+</main>
+
     <nav class="bottom-nav">
         <a href="#" class="nav-item" onclick="showMessage()">
             <img src="assets/gif1/money.gif" alt="Earn" />
@@ -132,47 +134,37 @@ body {
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
     <script>
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
-        authDomain: "tgbot-aece7.firebaseapp.com",
-        projectId: "tgbot-aece7",
-        storageBucket: "tgbot-aece7.appspot.com",
-        messagingSenderId: "560643215361",
-        appId: "1:560643215361:web:9f347550ec6ac03acf3000",
-        measurementId: "G-4JFPEM6L3B"
-    };
+// Firebase function to save user data
+async function saveUserData() {
+    const userId = new URLSearchParams(window.location.search).get('user_id');
+    const username = new URLSearchParams(window.location.search).get('username');
+    const firstName = new URLSearchParams(window.location.search).get('first_name');
+    const errorMessageDiv = document.getElementById('error-message');
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore(app);
-
-    // Function to save user data
-    async function saveUserData() {
-        const userId = new URLSearchParams(window.location.search).get('user_id');
-        const username = new URLSearchParams(window.location.search).get('username');
-        const firstName = new URLSearchParams(window.location.search).get('first_name');
-        
-        if (userId && username) {
-            try {
-                // Save user data to Firestore under a collection named "users"
-                await db.collection("users").doc(username).set({
-                    userId: userId,
-                    username: username,
-                    firstName: firstName,
-                    lastLogin: new Date().toISOString(),
-                });
-                console.log("User data saved to Firestore!");
-            } catch (error) {
-                console.error("Error saving user data:", error);
-            }
-        } else {
-            console.warn("User data missing!");
+    if (userId && username) {
+        try {
+            // Save user data to Firestore under a collection named "users"
+            await db.collection("users").doc(username).set({
+                userId: userId,
+                username: username,
+                firstName: firstName,
+                lastLogin: new Date().toISOString(),
+            });
+            console.log("User data saved to Firestore!");
+            errorMessageDiv.textContent = ''; // Clear error message if data is saved
+        } catch (error) {
+            console.error("Error saving user data:", error);
+            errorMessageDiv.textContent = 'Error saving user data: ' + error.message; // Display error message
         }
+    } else {
+        console.warn("User data missing!");
+        errorMessageDiv.textContent = 'User ID or Username is missing!'; // Display error if user data is missing
     }
+}
 
-    // Call saveUserData on page load
-    saveUserData();
+// Call saveUserData on page load
+saveUserData();
+
 </script>
 
 
