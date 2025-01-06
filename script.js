@@ -6,7 +6,7 @@ const username = urlParams.get('username');
 const firstName = urlParams.get('first_name');
 
 // Define the URL for the PHP backend hosted on InfinityFree
-const backendUrl = "https://your-infinityfree-domain.com/save_user_data.php";
+const backendUrl = "https://tapgalaxy.great-site.net/save_user_data.php";
 
 // Send user data to the PHP backend
 fetch(backendUrl, {
