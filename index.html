@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="utils.js" defer></script>
+    <title>TapGalaxy</title>
 </head>
 <body>
     <header>
@@ -17,20 +15,6 @@
         <a href="about.html" class="btn">ℹ️ About</a>
     </main>
 
-    <script>
-        // Get user data from the URL (from Telegram bot)
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('user_id');
-        const username = urlParams.get('username');
-        const firstName = urlParams.get('first_name');
-
-        // Construct the URL for game.html with user data
-        const gameUrl = `game.html?user_id=${userId}&username=${username}&first_name=${firstName}`;
-
-        // Redirect to the game page after 1 second to allow user info extraction
-        setTimeout(() => {
-            window.location.href = gameUrl;
-        }, 100); // You can adjust the delay time if necessary
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
