@@ -96,6 +96,7 @@ body {
             <p>First Name: ${firstName}</p>
         `;
     </script>
+
 <main id="game-area">
     <div id="coin-counter">Coins: <span id="personal_coins_counter">000000000</span></div>
     <div id="error-message" style="color: red; font-size: 14px; margin-top: 10px;"></div>
@@ -134,6 +135,23 @@ body {
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
     <script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
+        authDomain: "tgbot-aece7.firebaseapp.com",
+        projectId: "tgbot-aece7",
+        storageBucket: "tgbot-aece7.appspot.com",
+        messagingSenderId: "560643215361",
+        appId: "1:560643215361:web:9f347550ec6ac03acf3000",
+        measurementId: "G-4JFPEM6L3B"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);  // Initialize Firestore
+    </script>
+
+    <script>
 // Firebase function to save user data
 async function saveUserData() {
     const userId = new URLSearchParams(window.location.search).get('user_id');
@@ -166,7 +184,6 @@ async function saveUserData() {
 saveUserData();
 
 </script>
-
 
     <script>
         function showMessage() {
