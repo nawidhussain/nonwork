@@ -132,42 +132,49 @@ body {
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
-            authDomain: "tgbot-aece7.firebaseapp.com",
-            projectId: "tgbot-aece7",
-            storageBucket: "tgbot-aece7.appspot.com",
-            messagingSenderId: "560643215361",
-            appId: "1:560643215361:web:9f347550ec6ac03acf3000",
-            measurementId: "G-4JFPEM6L3B"
-        };
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB_IWjDNcStpzmxY3Y-GkPkQZbFG8Z1tT8",
+        authDomain: "tgbot-aece7.firebaseapp.com",
+        projectId: "tgbot-aece7",
+        storageBucket: "tgbot-aece7.appspot.com",
+        messagingSenderId: "560643215361",
+        appId: "1:560643215361:web:9f347550ec6ac03acf3000",
+        measurementId: "G-4JFPEM6L3B"
+    };
 
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(app);
 
-        // Save user data to Firebase
-        async function saveUserData() {
-            if (userId) {
-                try {
-                    await db.collection("users").doc(userId).set({
-                        username: username || "Unknown",
-                        first_name: firstName || "Unknown",
-                        last_login: new Date().toISOString()
-                    });
-                    console.log("User data saved successfully to Firestore!");
-                } catch (error) {
-                    console.error("Error saving user data:", error);
-                }
-            } else {
-                console.warn("User ID is missing; data will not be saved.");
+    // Function to save user data
+    async function saveUserData() {
+        const userId = new URLSearchParams(window.location.search).get('user_id');
+        const username = new URLSearchParams(window.location.search).get('username');
+        const firstName = new URLSearchParams(window.location.search).get('first_name');
+        
+        if (userId && username) {
+            try {
+                // Save user data to Firestore under a collection named "users"
+                await db.collection("users").doc(username).set({
+                    userId: userId,
+                    username: username,
+                    firstName: firstName,
+                    lastLogin: new Date().toISOString(),
+                });
+                console.log("User data saved to Firestore!");
+            } catch (error) {
+                console.error("Error saving user data:", error);
             }
+        } else {
+            console.warn("User data missing!");
         }
+    }
 
-        // Call saveUserData on page load
-        saveUserData();
-    </script>
+    // Call saveUserData on page load
+    saveUserData();
+</script>
+
 
     <script>
         function showMessage() {
